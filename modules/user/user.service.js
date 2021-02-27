@@ -20,7 +20,11 @@ async function findByUsername(username) {
   const user = await userModel.findOne({ username: username });
   return user;
 }
-
+async function findByEmail(email) {
+  const user = await userModel.findOne({ email: email });
+  if (user) throw "Email already registered";
+  return user;
+}
 async function login(data) {
   const { username, password } = data;
   const user = await findByUsername(username);
@@ -34,13 +38,14 @@ async function login(data) {
 
 async function register(data) {
   const { username, password, email, name } = data;
+  await findByEmail(email);
   const user = await findByUsername(username);
   if (!user) {
     const newUser = new userModel({});
     newUser.name = name;
     newUser.username = username;
     newUser.email = email;
-    console.log(password);
+    // console.log(password);
     //Generating hash
     const hash = bcrypt.hashSync(password, saltRounds);
     newUser.password = hash;
