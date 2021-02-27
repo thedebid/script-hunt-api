@@ -32,6 +32,18 @@ function getLevelList(req, res, next) {
   }
 }
 
+function careateLevel(req, res, next) {
+  levelService
+    .save(req.body)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
+
 module.exports = {
   getLevelList,
+  careateLevel,
 };

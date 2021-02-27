@@ -1,7 +1,10 @@
-import levelController from "./level.controller";
+const levelController = require("./level.controller");
 const express = require("express");
 const router = express.Router();
 
-router.route("/").get(levelController.getLevelList);
+router
+  .route("/")
+  .get(levelController.getLevelList)
+  .post(levelController.careateLevel);
 
 module.exports = router;

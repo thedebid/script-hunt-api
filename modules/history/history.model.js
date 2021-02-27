@@ -22,5 +22,30 @@ const quizHistorySchema = new Schema(
   }
 );
 
+const levelHistorySchema = new Schema(
+  {
+    uid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
+    cid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+      required: true,
+    },
+    lid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "level",
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const quizHistoryModel = mongoose.model("quizhistory", quizHistorySchema);
-module.exports = quizHistoryModel;
+const levelHistoryModel = mongoose.model("levelHistory", levelHistorySchema);
+
+module.exports = { quizHistoryModel, levelHistoryModel };

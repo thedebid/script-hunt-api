@@ -7,6 +7,7 @@ function getAll() {
 function save(data) {
   var newCategory = new categoryModel({});
   newCategory.name = data.name;
+  newCategory.icon = data.icon;
   return newCategory.save();
 }
 

@@ -4,6 +4,10 @@ const categorySchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  icon: {
+    type: String,
+    required: true,
+  },
 });
 
 const categoryModel = mongoose.model("category", categorySchema);
