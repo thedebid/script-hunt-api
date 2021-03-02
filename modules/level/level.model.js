@@ -8,5 +8,5 @@ const levelSchema = mongoose.Schema({
   name: { type: String, required: true },
 });
 
-const levelModel = mongoose.model("levelModel", levelSchema);
+const levelModel = mongoose.model("level", levelSchema);
 module.exports = levelModel;

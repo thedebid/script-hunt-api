@@ -3,7 +3,7 @@ const questionService = require("./question.service");
 function getQuestionList(req, res, next) {
   if (req.query.category) {
     questionService
-      .findByCategory(req.query.category)
+      .findByCategory(req.query.category, req.query.level)
       .then((result) => {
         if (!result.length) {
           return next({

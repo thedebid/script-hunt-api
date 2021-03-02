@@ -39,6 +39,11 @@ const levelHistorySchema = new Schema(
       ref: "level",
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["Locked", "Unlocked"],
+      default: "Locked",
+    },
   },
   {
     timestamps: true,

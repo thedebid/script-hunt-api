@@ -9,10 +9,14 @@ const questionSchema = mongoose.Schema({
     ref: "category",
     required: true,
   },
-  difficultyLevel: { type: String, enum: ["Easy", "Medium", "Hard"] },
-  answer: {},
-  correct_answer: {
-    type: String,
+  level: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "level",
+    required: true,
+  },
+  answers: {},
+  correct_answer_index: {
+    type: Number,
     required: true,
   },
 });

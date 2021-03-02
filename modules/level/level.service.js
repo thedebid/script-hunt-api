@@ -15,7 +15,11 @@ async function findByCategory(data) {
   if (!categoryId.length) throw "Invalid category";
   const levelList = await levelModel
     .find({ category: categoryId })
-    .populate("category");
+    .populate("category")
+    .lean();
+
+
+    
   return levelList;
 }
 module.exports = {
