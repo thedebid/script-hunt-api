@@ -2,6 +2,7 @@ const questionModel = require("./question.model");
 const helper = require("../../helpers/isValid");
 const categoryModel = require("./../category/category.model");
 const historyModel = require("./../history/history.model");
+const levelModel = require("./../level/level.model");
 
 const quizHistoryModel = historyModel.quizHistoryModel;
 function getAll() {
@@ -26,21 +27,21 @@ async function findById(id) {
 
 async function findByCategory(category, level) {
   const categoryId = await categoryModel.find({ name: category }, { _id: 1 });
+  const levelID = await levelModel.find({ name: level }, { _id: 1 });
   if (!categoryId.length) throw "Category with" + ` ${category} ` + "not found";
   const questionList = await questionModel
-    .find({ category: categoryId, level: level }, { correct_answer: 0 })
-    .populate("category", "level");
+    .find({ category: categoryId, level: levelID }, { correct_answer: 0 })
+    .populate("category");
   return questionList;
 }
 
 async function check({ qid, answer, user }) {
   const question = await findById(qid);
-  console.log(typeof answer);
-  console.log(question);
+  // console.log(typeof answer);
+  // console.log(question);
   if (question.correct_answer_index === Number(answer)) {
-    console.log("correct answer");
-    user.coins = user.coins + 5;
-    const coin = await user.save();
+    //  console.log("correct answer");
+
     var newQuizHistory = new quizHistoryModel({});
     newQuizHistory.uid = user._id;
     newQuizHistory.qid = qid;

@@ -4,7 +4,7 @@ function getLevelHistory(req, res, next) {
   lvlHistoryService
     .getLevelHistory(req.query.uid, req.query.cid)
     .then((result) => {
-      console.log(result);
+     // console.log(result);
       if (!result.length) {
         // res.send(false);
       }
@@ -16,7 +16,7 @@ function getLevelHistory(req, res, next) {
 }
 function createLevelHistory(req, res, next) {
   lvlHistoryService
-    .save(req.body)
+    .save(req.body, req.user)
     .then((result) => {
       res.status(200).json(result);
     })
