@@ -1,5 +1,5 @@
 const questionService = require("./question.service");
-
+const randomQuestionGenerator = require("./../../helpers/generateRandomQuestions");
 function getQuestionList(req, res, next) {
   if (req.query.category) {
     questionService
@@ -12,7 +12,7 @@ function getQuestionList(req, res, next) {
             status: "500",
           });
         }
-        res.status(200).json(result);
+        res.status(200).json(randomQuestionGenerator(result));
       })
       .catch((err) => next(err));
   } else {

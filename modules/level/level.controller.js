@@ -23,7 +23,6 @@ function getLevelList(req, res, next) {
               };
             });
         });
-        console.log(result);
         res.status(200).json(result);
       })
       .catch((err) => next(err));
