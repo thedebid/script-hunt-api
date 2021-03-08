@@ -6,11 +6,10 @@ router
   .route("/")
   .get(questionController.getQuestionList)
   .post(questionController.createQuestion);
+router.route("/getAnswer/:id/").get(questionController.getAnswer);
 
 router.route("/checkAnswer/:id/").get(questionController.checkAnswer);
 
 router.route("/:id").get(questionController.getQuestionById);
-//   .delete(categoryController.deleteCategory)
-//   .put(categoryController.updateCategory);
 
 module.exports = router;

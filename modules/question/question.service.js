@@ -57,6 +57,7 @@ async function check({ qid, answer, user }) {
   }
 }
 
+
 module.exports = {
   getAll,
   save,
