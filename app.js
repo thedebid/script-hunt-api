@@ -18,11 +18,22 @@ const api = process.env.API_URL;
 app.use(`${api}/`, APIRoute);
 
 //Server
-app.listen(process.env.PORT, (error) => {
-  if (error) {
-    throw error;
+// app.listen(process.env.PORT, (error) => {
+//   if (error) {
+//     throw error;
+//   }
+//   console.log("Server is running at port " + process.env.PORT);
+// });
+
+//for pro
+var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
+var server_host = process.env.YOUR_HOST || "0.0.0.0";
+app.listen(server_port, server_host, (err, done) => {
+  if (err) {
+    console.log("Error while listening port " + app.get("port") + " >> " + err);
+  } else {
+    console.log("Server is listening at port " + app.get("port"));
   }
-  console.log("Server is running at port " + process.env.PORT);
 });
 
 //For error handling
